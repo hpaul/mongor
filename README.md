@@ -32,6 +32,16 @@ For connection add this to **application/config/database.php** after sqlsrv:
 			'password'   => '',
 	),
 
+## Utilisation
+
+### Models
+
+To use a model you need to create a file in models folder with the name of the class just like Eloquent
+
+	class User extends Mongor\Model {}
+
+Where User is name(lower case) of the collection in database
+
 
 ## Copyright
 

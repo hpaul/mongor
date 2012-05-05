@@ -411,6 +411,7 @@ class Model {
 		{
 			return call_user_func_array(array($this, '_' . $method), $parameters);
 		}
+		throw new \Exception("Method [$method] is not defined.");
 	}
 
 	/**
@@ -436,9 +437,9 @@ class Model {
 	 */
 	public static function __callStatic($method, $parameters)
 	{
-		$model = new static;
+		$model = get_called_class();
 
-		return call_user_func_array(array($model, '_' . $method), $parameters);
+		return call_user_func_array(array(new $model, $method), $parameters);
 	}
 
 }

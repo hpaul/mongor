@@ -10,18 +10,12 @@
 
 Add the following to your **application/bundles.php** file:
 
-	'mongor' => array(
-		'autoloads' => array(
-			'map' => array(
-				'Mongor\\Model'    => '(:bundle)/model.php',
-           	 	'Mongor\\MongoDB'    => '(:bundle)/mongodb.php',
-            	'Mongor\\Hydrator'    => '(:bundle)/hydrator.php',
-			),
-		),
-	),
-
+	```php
+	'mongor' => array('auto' => true),
+	```
 For connection add this to **application/config/database.php** after sqlsrv:
 
+	```php
 	'mongor' => array(
 			'hostname'   => 'localhost',
 			'connect'    => true,
@@ -31,8 +25,9 @@ For connection add this to **application/config/database.php** after sqlsrv:
 			'username'   => '',
 			'password'   => '',
 	),
+	```
 
-## Utilisation
+## Use
 
 ### Models
 
@@ -42,6 +37,9 @@ To use a model you need to create a file in models folder with the name of the c
 
 Where User is name(lower case) of the collection in database
 
+### Auth
+
+You can use Mongo for authentication, is easy only change in **application/config/auth.php** driver in **mongo** and set the model
 
 ## Copyright
 

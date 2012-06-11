@@ -10,22 +10,23 @@
 
 Add the following to your **application/bundles.php** file:
 
-	```php
-	'mongor' => array('auto' => true),
-	```
+```php
+'mongor' => array('auto' => true),
+```
+
 For connection add this to **application/config/database.php** after sqlsrv:
 
-	```php
-	'mongor' => array(
-			'hostname'   => 'localhost',
-			'connect'    => true,
-			'timeout'    => '',
-			'replicaSet' => '',
-			'db'         => 'oscar',
-			'username'   => '',
-			'password'   => '',
-	),
-	```
+```php
+'mongor' => array(
+		'hostname'   => 'localhost',
+		'connect'    => true,
+		'timeout'    => '',
+		'replicaSet' => '',
+		'db'         => 'oscar',
+		'username'   => '',
+		'password'   => '',
+),
+```
 
 ## Use
 

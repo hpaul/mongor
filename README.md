@@ -32,16 +32,16 @@ For connection add this to **application/config/database.php** after sqlsrv:
 
 ### Models
 
-To use a model you need to create a file in models folder with the name of the class just like Eloquent
+To use a model you need to create a file in the models folder with the name of the class, just like Eloquent
 
 	class User extends Mongor\Model {}
 
-Where User is name(lower case) of the collection in database
+Where User is the name (lower case) of the collection in MongoDB.
 
 ### Auth
 
-You can use Mongo for authentication, is easy only change in **application/config/auth.php** driver in **mongo** and set the model
+Using MongoDB for authentication is now very easy! Only change the driver in **application/config/auth.php** to **mongo** and set the corresponding model.
 
 ## Copyright
 
-This is a bundle based on [mikelbring library](https://github.com/mikelbring/Mongor), I only adapted for use with Laravel 3 with models, it's basic so if you have any issues please submit.
+This is a bundle based on [mikelbring library](https://github.com/mikelbring/Mongor), I only adapted it for use with Laravel 3 with models. It's very basic, so if you have any issues please fork or write an issue ticket.

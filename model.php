@@ -33,7 +33,7 @@ class Model {
 	/**
 	 * The model's attributes.
 	 *
-	 * Typically, a model has an attribute for each column on the table.
+	 * Typically, a model has an attribute for each column of the collection.
 	 *
 	 * @var array
 	 */
@@ -78,7 +78,7 @@ class Model {
 	public $relating_key;
 
 	/**
-	 * The table name of the model being resolved.
+	 * The collection name of the model being resolved.
 	 *
 	 * This is used during many-to-many eager loading.
 	 *
@@ -321,8 +321,8 @@ class Model {
 	 * Retrieve the query for a 1:1 belonging relationship.
 	 *
 	 * The default foreign key for belonging relationships is the name of the
-	 * relationship method name with _id. So, if a model has a "manager" method
-	 * returning a belongs_to relationship, the key would be manager_id.
+	 * relationship method name with _id. If a model has a "manager" method
+	 * the returned belongs_to relationship key would be manager_id.
 	 *
 	 * @param  string  $model
 	 * @param  string  $foreign_key

@@ -110,7 +110,7 @@ class Model {
 
 		if (is_string($this->connection))
 		{
-			$this->connection = MongoDB::instance($this->connection);
+			$this->connection = new MongoDB;
 		}
 
 		static::$collection = strtolower(get_called_class());

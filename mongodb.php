@@ -5,37 +5,6 @@ use Laravel\Config as Config;
 class MongoDB {
 
 	/**
-	* Database instances
-	*
-	* @var array
-	*/
-	public static $instances = array();
-
-	/**
-	 * Load instance
-	 *
-	 * @static
-	 * @param string $name
-	 * @param array|null $config
-	 * @return MangoDB
-	 */
-	public static function instance($name = 'mongor', array $config = NULL)
-	{
-		if ( ! isset(self::$instances[$name]))
-		{
-			if ($config === NULL)
-			{
-				// Load the configuration for this database
-				$config = Config::get('database.connections.mongor');
-			}
-
-			new MongoDB($name, $config);
-		}
-
-		return self::$instances[$name];
-	}
-
-	/**
 	 * Instance name
 	 *
 	 * @var string
@@ -74,26 +43,19 @@ class MongoDB {
 	 * @param  $name
 	 * @param array $config
 	 */
-	protected function __construct($name, array $config)
+	public function __construct()
 	{
-		$this->_name = $name;
 
-		$this->_config = $config;
-
-		/* Store the database instance */
-		MongoDB::$instances[$name] = $this;
+		$this->_config = Config::get('mongor::database');
 
 		$this->connect();
+
+		return $this;
 	}
 
 	final public function __destruct()
 	{
 		$this->disconnect();
-	}
-
-	final public function __toString()
-	{
-		return $this->_name;
 	}
 
 	/**

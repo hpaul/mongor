@@ -14,19 +14,8 @@ Add the following to your **application/bundles.php** file:
 'mongor' => array('auto' => true),
 ```
 
-For connection add this to **application/config/database.php** after sqlsrv:
+Edit **config/database.php** with your database connection details.
 
-```php
-'mongor' => array(
-		'hostname'   => 'localhost',
-		'connect'    => true,
-		'timeout'    => '',
-		'replicaSet' => '',
-		'db'         => 'oscar',
-		'username'   => '',
-		'password'   => '',
-),
-```
 
 ## Use
 

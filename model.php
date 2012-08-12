@@ -101,6 +101,11 @@ class Model {
 	 */
 	public $_where = array();
 
+	/**
+	 * @var array
+	 */
+	public $_sort = array();
+
 	public function __construct($connection = NULL)
 	{
 		if ($connection !== NULL)
@@ -113,7 +118,10 @@ class Model {
 			$this->connection = new MongoDB;
 		}
 
-		static::$collection = strtolower(get_called_class());
+		if (is_null(static::$collection))
+		{	
+			static::$collection = strtolower(get_called_class());
+		}
 	}
 
 	/****************************************************
@@ -157,6 +165,17 @@ class Model {
 	public function _skip($skip)
 	{
 		$this->_skip = $skip;
+
+		return $this;
+	}
+
+	/**
+	 * @param  array    $fields
+	 * @return Model
+	 */
+	public function _sort($fields)
+	{
+		$this->_sort = $fields;
 
 		return $this;
 	}
@@ -225,14 +244,19 @@ class Model {
 	{
 		$results =  $this->connection->find(static::$collection, $this->_where, $fields);
 		
-		if(!is_null($this->_limit))
+		if ( ! is_null($this->_limit))
 		{
 			$results->limit($this->_limit);
 		}
 
-		if(!is_null($this->_skip))
+		if( !  is_null($this->_skip))
 		{
 			$results->skip($this->_skip);
+		}
+
+		if ( ! empty($this->_sort))
+		{
+			$results->sort($this->_sort);
 		}
 
 		return Hydrator::hydrate($this, $results);

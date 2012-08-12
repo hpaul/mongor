@@ -118,7 +118,10 @@ class Model {
 			$this->connection = new MongoDB;
 		}
 
-		static::$collection = strtolower(get_called_class());
+		if (is_null(static::$collection))
+		{	
+			static::$collection = strtolower(get_called_class());
+		}
 	}
 
 	/****************************************************

@@ -12,10 +12,7 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 	 */
 	public function retrieve($id)
 	{
-		if (filter_var($id, FILTER_VALIDATE_INT) !== false)
-		{
-			return $this->model()->where("_id", $id)->first();
-		}
+		return $this->model()->where("_id", $id)->first();
 	}
 
 	/**

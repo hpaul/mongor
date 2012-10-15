@@ -12,7 +12,11 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 	 */
 	public function retrieve($id)
 	{
-		return $this->model()->where("_id", $id)->first();
+		if (!$id) {
+			return NULL;
+		}
+		
+		return $this->model()->where("_id", new \MongoId($id))->first();
 	}
 
 	/**
@@ -25,7 +29,7 @@ class MongoAuth extends \Laravel\Auth\Drivers\Driver {
 	{
 		$username = Config::get('auth.username');
 
-		$user = $this->model()->where($username, $arguments['username'])->first();
+		$user = $this->model()->where($username, $arguments[$username])->first();
 
 		// This driver uses a basic username and password authentication scheme
 		// so if the credentials match what is in the database we will just

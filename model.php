@@ -119,7 +119,7 @@ class Model {
 		}
 
 		if (is_null(static::$collection))
-		{	
+		{
 			static::$collection = strtolower(get_called_class());
 		}
 	}
@@ -143,6 +143,8 @@ class Model {
 		{
 			$this->_where = array($where => $value);
 		}
+
+        $this->_count = null;
 
 		return $this;
 	}
@@ -236,6 +238,16 @@ class Model {
 		return $this;
 	}
 
+    protected $_count = null;
+
+    public function _count($fields = array())
+    {
+        if (null === $this->_count) {
+            $this->_count = $this->connection->find(static::$collection, $this->_where, $fields)->count();
+        }
+        return $this->_count;
+    }
+
 	/**
 	 * @param  array  $fields
 	 * @return array
@@ -243,7 +255,9 @@ class Model {
 	public function _get($fields = array())
 	{
 		$results =  $this->connection->find(static::$collection, $this->_where, $fields);
-		
+
+        $this->_count = $results->count();
+
 		if ( ! is_null($this->_limit))
 		{
 			$results->limit($this->_limit);
@@ -391,7 +405,7 @@ class Model {
 		$relation = $relation_model::where($this->relating_key, $this->_id)->first();
 
 
-	   return $model::where('_id', $relation->attributes[$associated_key]);
+	    return $model::where('_id', $relation->attributes[$associated_key]);
 	}
 
 	/****************************************************

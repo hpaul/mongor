@@ -248,6 +248,11 @@ class Model {
         return $this->_count;
     }
 
+    public function _order_by($field, $dir = null)
+    {
+        $this->_sort[$field] = ('desc' === strtolower($dir)) ? -1 : 1;
+    }
+
 	/**
 	 * @param  array  $fields
 	 * @return array

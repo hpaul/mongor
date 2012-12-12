@@ -251,6 +251,7 @@ class Model {
     public function _order_by($field, $dir = null)
     {
         $this->_sort[$field] = ('desc' === strtolower($dir)) ? -1 : 1;
+        return $this;
     }
 
 	/**

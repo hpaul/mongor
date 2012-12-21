@@ -43,12 +43,12 @@ class MongoDB {
 	 * @param  $name
 	 * @param array $config
 	 */
-	public function __construct()
+	public function __construct($config_name = 'database')
 	{
 
-		$this->_config = Config::get('mongor::database');
+		$this->_config = Config::get('mongor::' . $config_name);
 
-		$this->connect();
+        $this->connect();
 
 		return $this;
 	}
@@ -323,8 +323,6 @@ class MongoDB {
 	/* Run Command */
 	protected function _call($command, array $arguments = array(), array $values = NULL)
 	{
-		$start  = microtime(true);
-
 		$this->_connected OR $this->connect();
 
 		extract($arguments);
@@ -396,16 +394,7 @@ class MongoDB {
 			break;
 		}
 
-		 $this->log($command, $start, $arguments);
-
 		return $r;
-	}
-
-	protected function log($command, $start, $arguments) {
-
-		$time = number_format((microtime(true) - $start) * 1000, 2);
-
-		\Laravel\Event::fire('laravel.mongoquery', array($this->_db, $command, $arguments, $time));
 	}
 }
 ?>

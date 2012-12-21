@@ -43,12 +43,12 @@ class MongoDB {
 	 * @param  $name
 	 * @param array $config
 	 */
-	public function __construct()
+	public function __construct($config_name = 'database')
 	{
 
-		$this->_config = Config::get('mongor::database');
+		$this->_config = Config::get('mongor::' . $config_name);
 
-		$this->connect();
+        $this->connect();
 
 		return $this;
 	}

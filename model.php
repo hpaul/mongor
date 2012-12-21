@@ -21,7 +21,7 @@ class Model {
 	 *
 	 * @var string
 	 */
-	public $connection = 'mongor';
+	public $connection = 'database';
 
 	/**
 	 * Indicates if the model exists in the database.
@@ -115,7 +115,7 @@ class Model {
 
 		if (is_string($this->connection))
 		{
-			$this->connection = new MongoDB;
+			$this->connection = new MongoDB($this->connection);
 		}
 
 		if (is_null(static::$collection))
